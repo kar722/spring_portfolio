@@ -1,8 +1,10 @@
 package com.nighthawk.spring_portfolio.mvc.person;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -64,10 +66,10 @@ public class Person {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
     
-    @NotEmpty
+    @Column(unique=false)
     private int age;
 
-    @NotEmpty
+    @Column(unique=false)
     private String nationality;
 
     /* HashMap is used to store JSON for daily "stats"
@@ -78,10 +80,10 @@ public class Person {
         }
     }
     */
-    @Type(type="json")
+    /* @Type(type="json")
     @Column(columnDefinition = "jsonb")
     private Map<String,Map<String, Object>> stats = new HashMap<>(); 
-    
+    */
 
     // Constructor used when building object from an API
     public Person(String email, String password, String name, Date dob, int age, String nationality) {
@@ -113,7 +115,7 @@ public class Person {
     }
 
     public String getNationalityToString(){
-        return ("{ \"name\": " + this.name + " ," + "\"bmi\": " + this.getNationality() + " }" );
+        return ("{ \"name\": " + this.name + " ," + "\"nationality\": " + this.getNationality() + " }" );
     }
 
     public static void main(String[] args) {
@@ -121,7 +123,7 @@ public class Person {
         Person p1 = new Person();
 
         // using gregorian calendar to initialize tester date object
-        Date dob2 = new GregorianCalendar(2006, 7, 22).getTime();
+        Date dob2 = new GregorianCalendar(2006, 6, 22).getTime();
         Person p2 = new Person("karthikv722@gmail.com", "karthikishim", "Karthik Valluri", dob2, 16, "United States");
         
         
