@@ -127,7 +127,11 @@
         <artifactId>eclipselink</artifactId>
         <version>2.7.4</version>
       </dependency>
-    
+            <dependency>
+            <groupId>com.vladmihalcea</groupId>
+            <artifactId>hibernate-types-52</artifactId>
+            <version>2.20.0</version>
+        </dependency>
       <dependency>
         <groupId>org.eclipse.persistence</groupId>
         <artifactId>eclipselink</artifactId>
