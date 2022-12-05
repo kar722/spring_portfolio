@@ -1,10 +1,8 @@
 package com.nighthawk.spring_portfolio.mvc.person;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -21,8 +19,9 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
-import org.springframework.data.mongodb.core.schema.JsonSchemaObject.Type.JsonType;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.vladmihalcea.hibernate.type.json.JsonType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -79,11 +78,11 @@ public class Person {
             "steps": 8000
         }
     }
-    */
-    /* @Type(type="json")
+  */
+    @Type(type="json")
     @Column(columnDefinition = "jsonb")
-    private Map<String,Map<String, Object>> stats = new HashMap<>(); 
-    */
+    private Map<String,Map<String, Object>> stats = new HashMap<>();
+
 
     // Constructor used when building object from an API
     public Person(String email, String password, String name, Date dob, int age, String nationality) {
